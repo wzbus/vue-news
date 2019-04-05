@@ -3,7 +3,7 @@
     <index-header></index-header>
     <index-nav></index-nav>
     <ul>
-      <li class="border-bottom" v-for="(item,index) in list" :key="index">
+      <router-link :to="{name:'art'}" tag="li" class="border-bottom" v-for="(item,index) in list" :key="index">
         <p class="title">{{item.title}}</p>
         <div class="picture">
           <div class="pic" :style="{backgroundImage: 'url(' + item.thumbnail_pic_s + ')'}" v-if="item.thumbnail_pic_s"></div>
@@ -14,7 +14,7 @@
           <span class="author">{{item.author_name}}</span>
           <span class="time">{{item.date}}</span>
         </div>
-      </li>
+      </router-link>
     </ul>
   </div>
 </template>

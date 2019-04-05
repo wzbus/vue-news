@@ -1,9 +1,9 @@
 <template>
   <div class="header">
-    <div class="search-wrap">
+    <router-link :to="{name:'search'}" tag="div" class="search-wrap">
       <i class="iconfont icon-search"></i>
       <div class="search">头条搜索</div>
-    </div>
+    </router-link>
     <div class="btn">
       <i class="iconfont icon-camera"></i>
       <p class="desc">发布</p>

@@ -1,10 +1,10 @@
 <template>
-  <div class="nav">
-    <ul class="border-bottom">
+  <div class="nav border-top">
+    <ul>
       <li v-for="(item,index) in list" :key="index" :class="{'active': index === active}" @click="change(index)">{{item}}</li>
     </ul>
     <div class="btn border-left">
-      <i class="iconfont icon-home"></i>
+      <i class="iconfont icon-icon_threeline_fill"></i>
     </div>
   </div>
 </template>

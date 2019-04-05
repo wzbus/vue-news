@@ -4,7 +4,6 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
   linkActiveClass: 'active',
   routes: [
     {
@@ -27,6 +26,14 @@ export default new Router({
           component: () => import('./views/Zone')
         }
       ]
+    }, {
+      path: '/search',
+      name: 'search',
+      component: () => import('./views/Search')
+    }, {
+      path: '/acticle',
+      name: 'art',
+      component: () => import('./views/Article')
     }
   ]
 })

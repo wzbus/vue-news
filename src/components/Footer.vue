@@ -1,15 +1,15 @@
 <template>
   <ul class="footer">
     <router-link :to="{name:'home'}" tag="li" class="navli" exact>
-      <i class="iconfont icon-home nav-icon"></i>
+      <i class="iconfont icon-home1 nav-icon"></i>
       <p class="nav-title">首页</p>
     </router-link>
     <router-link :to="{name:'history'}" tag="li" class="navli">
-      <i class="iconfont icon-Play nav-icon"></i>
-      <p class="nav-title">小视频</p>
+      <i class="iconfont icon-clock nav-icon"></i>
+      <p class="nav-title">历史</p>
     </router-link>
     <router-link :to="{name:'zone'}" tag="li" class="navli">
-      <i class="iconfont icon-svgpeople nav-icon"></i>
+      <i class="iconfont icon-people nav-icon"></i>
       <p class="nav-title">我的</p>
     </router-link>
   </ul>
