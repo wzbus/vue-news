@@ -1,14 +1,12 @@
 <template>
   <div class="page">
     <div class="header">
-      <div class="btn" @click="$router.back()">
-        <i class="iconfont icon-right"></i>
-      </div>
+      <div class="iconfont btn return-btn" @click="$router.back()">&#xe720;</div>
       <div class="search-wrap">
         <i class="iconfont icon-search"></i>
         <input type="search" class="search" placeholder="头条搜索" autofocus/>
       </div>
-      <div class="btn">搜索</div>
+      <div class="btn search-btn">搜索</div>
     </div>
   </div>
 </template>
@@ -56,10 +54,15 @@ export default {
   font-weight: 500;
 }
 .btn {
-  margin: 0 5%;
   font-size: 18px;
   color: #fff;
   text-align: center;
+}
+.return-btn {
+  width: 10%;
+}
+.search-btn {
+  width: 16%;
 }
 .btn i {
   font-size: 18px;

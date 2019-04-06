@@ -1,5 +1,8 @@
 <template>
   <div class="zone">
+    <div class="login">
+      <div class="login-btn">登录</div>
+    </div>
     <div class="user">
       <div class="top">
         <div class="header"></div>
@@ -88,6 +91,26 @@ export default {
   width: 100%;
   height: calc(100% - 50px);
   background-color: #eee;
+}
+.login {
+  position: relative;
+  width: 100%;
+  height: 143px;
+  padding-top: 40px;
+  text-align: center;
+}
+.login-btn {
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  margin: 0 auto;
+  border-radius: 50%;
+  font-size: 18px;
+  color: #fff;
+  background-color: #F85A59;
+}
+.login-btn:hover {
+  background-color: #F8ABAB;
 }
 .user {
   background-color: #fff;

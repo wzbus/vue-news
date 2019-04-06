@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-    <router-view/>
+    <router-view></router-view>
     <index-footer></index-footer>
   </div>
 </template>

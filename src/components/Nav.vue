@@ -1,5 +1,5 @@
 <template>
-  <div class="nav border-top">
+  <div class="nav">
     <ul>
       <li v-for="(item,index) in list" :key="index" :class="{'active': index === active}" @click="change(index)">{{item}}</li>
     </ul>
@@ -30,6 +30,7 @@ export default {
 .nav {
   width: 100%;
   line-height: 40px;
+  border-bottom: 1px solid #eee;
   overflow: hidden;
 }
 ul {
