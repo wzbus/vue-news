@@ -1,32 +1,32 @@
 <template>
   <div class="zone">
-    <div class="login">
-      <div class="login-btn">登录</div>
+    <div class="login" v-if="!user">
+      <router-link :to="{name:'login'}" tag="div" class="login-btn">登录</router-link>
     </div>
-    <div class="user">
+    <div class="user" v-if="user">
       <div class="top">
         <div class="header"></div>
         <div class="right">
-          <p class="name">用户名</p>
+          <p class="name">{{user.name}}</p>
           <div class="apply">申请认知</div>
         </div>
         <i class="iconfont icon-right top-icon"></i>
       </div>
       <div class="bottom">
         <div class="info">
-          <p class="num">0</p>
+          <p class="num">{{user.publish}}</p>
           <p class="user-desc">头条</p>
         </div>
         <div class="info">
-          <p class="num">0</p>
+          <p class="num">{{user.follow}}</p>
           <p class="user-desc">关注</p>
         </div>
         <div class="info">
-          <p class="num">0</p>
+          <p class="num">{{user.fans}}</p>
           <p class="user-desc">粉丝</p>
         </div>
         <div class="info">
-          <p class="num">0</p>
+          <p class="num">{{user.zan}}</p>
           <p class="user-desc">获赞</p>
         </div>
       </div>
@@ -82,7 +82,17 @@
 
 <script>
 export default {
-  name: 'zone'
+  name: 'zone',
+  data () {
+    return {
+      user: null
+    }
+  },
+  mounted () {
+    if (JSON.parse(localStorage.getItem('user'))) {
+      this.user = JSON.parse(localStorage.getItem('user'))
+    }
+  }
 }
 </script>
 
@@ -125,7 +135,8 @@ export default {
   width: 80px;
   height: 80px;
   margin: 20px 5%;
-  background-color: #eee;
+  background-image: url('../../public/img/news.jpg');
+  background-size: cover;
   border-radius: 50%;
 }
 .right {

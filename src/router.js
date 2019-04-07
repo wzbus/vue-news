@@ -31,9 +31,21 @@ export default new Router({
       name: 'search',
       component: () => import('./views/Search')
     }, {
+      path: '/sort',
+      name: 'sort',
+      component: () => import('./views/Sort')
+    }, {
       path: '/acticle',
       name: 'art',
       component: () => import('./views/Article')
+    }, {
+      path: '/login',
+      name: 'login',
+      component: () => import('./views/Login')
+    }, {
+      path: '/register',
+      name: 'register',
+      component: () => import('./views/Register')
     }
   ]
 })

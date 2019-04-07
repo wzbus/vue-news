@@ -3,9 +3,9 @@
     <ul>
       <li v-for="(item,index) in list" :key="index" :class="{'active': index === active}" @click="change(index)">{{item}}</li>
     </ul>
-    <div class="btn border-left">
+    <router-link :to="{name:'sort'}" tag="div" class="btn border-left">
       <i class="iconfont icon-icon_threeline_fill"></i>
-    </div>
+    </router-link>
   </div>
 </template>
 
@@ -14,13 +14,18 @@ export default {
   name: 'indexNav',
   data () {
     return {
-      list: ['推荐', '社会', '国内', '娱乐', '体育', '军事', '科技', '财经', '时尚'],
-      active: 0
+      list: ['关注', '推荐'],
+      active: 1
     }
   },
   methods: {
     change (index) {
       this.active = index
+    }
+  },
+  mounted () {
+    if (JSON.parse(localStorage.getItem('user')).sort) {
+      this.list = this.list.concat(JSON.parse(localStorage.getItem('user')).sort)
     }
   }
 }
@@ -45,8 +50,8 @@ ul::-webkit-scrollbar {
   display: none;
 }
 li {
-  padding: 0 6px;
-  font-size: 18px;
+  padding: 0 5px;
+  font-size: 16px;
   font-weight: 500;
   text-align: center;
   display: inline-block;
