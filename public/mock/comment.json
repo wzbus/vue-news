@@ -1,0 +1,27 @@
+{
+  "reason": true,
+  "data": [
+    {
+      "name": "浙江用户",
+      "comment": "写得不错",
+      "zan": 16,
+      "iszan": false,
+      "time": 13,
+      "pic": "../../img/news.jpg"
+    }, {
+      "name": "江苏用户",
+      "comment": "支持一下",
+      "zan": 2,
+      "iszan": false,
+      "time": 24,
+      "pic": "../../img/news.jpg"
+    }, {
+      "name": "上海用户",
+      "comment": "关注了",
+      "zan": 0,
+      "iszan": false,
+      "time": 29,
+      "pic": "../../img/news.jpg"
+    }
+  ]
+}

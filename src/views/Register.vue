@@ -37,7 +37,15 @@ export default {
   methods: {
     register () {
       if (this.password === this.repeat) {
-        let user = { 'name': this.name, 'password': this.password, 'sort': null, 'publish': 0, 'follow': 0, 'fans': 0, 'zan': 0 }
+        let user = {
+          'name': this.name,
+          'password': this.password,
+          'sort': null,
+          'publish': 0,
+          'follow': 0,
+          'fans': 0,
+          'zan': 0
+        }
         localStorage.setItem('user', JSON.stringify(user))
         this.name = ''
         this.password = ''

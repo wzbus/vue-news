@@ -4,14 +4,14 @@
       <router-link :to="{name:'login'}" tag="div" class="login-btn">登录</router-link>
     </div>
     <div class="user" v-if="user">
-      <div class="top">
+      <router-link :to="{name:'info'}" tag="div" class="top">
         <div class="header"></div>
         <div class="right">
           <p class="name">{{user.name}}</p>
           <div class="apply">申请认知</div>
         </div>
         <i class="iconfont icon-right top-icon"></i>
-      </div>
+      </router-link>
       <div class="bottom">
         <div class="info">
           <p class="num">{{user.publish}}</p>
@@ -208,7 +208,7 @@ ul {
 li {
   width: 100%;
   line-height: 50px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
 }
 .icon-right {

@@ -24,7 +24,7 @@ export default {
     }
   },
   mounted () {
-    if (JSON.parse(localStorage.getItem('user')).sort) {
+    if (JSON.parse(localStorage.getItem('user'))) {
       this.list = this.list.concat(JSON.parse(localStorage.getItem('user')).sort)
     }
   }
