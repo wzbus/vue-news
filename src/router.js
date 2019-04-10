@@ -49,7 +49,10 @@ export default new Router({
     }, {
       path: '/info',
       name: 'info',
-      component: () => import('./views/Info')
+      component: () => import('./views/Info'),
+      meta: {
+        requireAuth: true
+      }
     }
   ]
 })

@@ -15,7 +15,7 @@
       <div class="emoji">
         <span class="iconfont" @click="toList">&#xe8de;</span>
         <span class="iconfont" @click="collect">&#xe6e0;</span>
-        <span class="iconfont" @click="share">&#xe61c;</span>
+        <span class="iconfont" @click="share">&#xe600;</span>
       </div>
     </div>
     <div class="comment-wrap" v-show="showComment">
@@ -43,13 +43,11 @@
         </div>
       </li>
     </ul>
-    <toast :text="text" v-if="showToast"></toast>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import toast from '../components/Toast'
 export default {
   name: 'art',
   data () {
@@ -59,13 +57,8 @@ export default {
       content: '',
       comment: '',
       showComment: false,
-      showList: false,
-      showToast: false,
-      text: '评论成功'
+      showList: false
     }
-  },
-  components: {
-    toast
   },
   mounted () {
     axios.get(this.data.url).then((res) => {
@@ -91,22 +84,23 @@ export default {
     },
     publish () {
       if (this.comment) {
-        let user = JSON.parse(localStorage.getItem('user'))
-        let data = {
-          'name': user.name,
-          'comment': this.comment,
-          'zan': 0,
-          'iszan': false,
-          'time': 1,
-          'pic': '../../img/news.jpg' // user.pic
+        if (localStorage.getItem('user')) {
+          let user = JSON.parse(localStorage.getItem('user'))
+          let data = {
+            'name': user.name,
+            'comment': this.comment,
+            'zan': 0,
+            'iszan': false,
+            'time': 1,
+            'pic': '../../img/news.jpg' // user.pic
+          }
+          this.list = this.list.concat(data)
+          this.showList = true
+          this.$toast('评论成功')
+          this.comment = ''
+        } else {
+          this.$toast('请先登录')
         }
-        this.list = this.list.concat(data)
-        this.showList = true
-        this.showToast = true
-        setTimeout(() => {
-          this.showToast = false
-        }, 2000)
-        this.comment = ''
       }
     },
     collect () {

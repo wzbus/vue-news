@@ -14,8 +14,14 @@
       </div>
     </form>
     <div class="confirm-btn" @click="login" :class="isFull?'full':'empty'" :disabled="!isFull">进入头条</div>
-    <p class="tip">点击查看<span>“用户协议”</span>和<span>“隐私政策”</span></p>
-    <p class="link"><router-link :to="{name:'register'}" tag="span">注册账号</router-link></p>
+    <p class="tip">
+      点击查看
+      <span>“用户协议”</span>和
+      <span>“隐私政策”</span>
+    </p>
+    <p class="link">
+      <router-link :to="{name:'register'}" tag="span">注册账号</router-link>
+    </p>
   </div>
 </template>
 
@@ -30,13 +36,18 @@ export default {
   },
   methods: {
     login () {
-      let user = JSON.parse(localStorage.getItem('user'))
-      if (user.name === this.name && user.password === this.password) {
-        this.name = ''
-        this.password = ''
-        this.$router.push('/home')
+      if (localStorage.getItem('user')) {
+        let user = JSON.parse(localStorage.getItem('user'))
+        if (user.name === this.name && user.password === this.password) {
+          this.$toast('登录成功')
+          this.name = ''
+          this.password = ''
+          this.$router.push('/home')
+        } else {
+          this.$toast('用户名或密码错误')
+        }
       } else {
-        alert('用户名或密码错误')
+        this.$toast('该账号不存在')
       }
     }
   },
@@ -48,6 +59,7 @@ export default {
         return false
       }
     }
+
   }
 }
 </script>
@@ -97,7 +109,7 @@ input::-webkit-input-placeholder {
   color: #999;
 }
 .input-wrap:focus-within {
-  border: 1px solid #F85A59;
+  border: 1px solid #f85a59;
 }
 .confirm-btn {
   width: 80%;
@@ -110,10 +122,10 @@ input::-webkit-input-placeholder {
   text-align: center;
 }
 .full {
-  background-color: #F85A59;
+  background-color: #f85a59;
 }
 .empty {
-  background-color: #F8ABAB;
+  background-color: #f8abab;
 }
 .tip {
   margin-top: -5px;
@@ -122,12 +134,12 @@ input::-webkit-input-placeholder {
   font-size: 14px;
 }
 .tip > span {
-  color: #3E6697;
+  color: #3e6697;
 }
 .link {
   margin-top: 20px;
   font-size: 16px;
-  color: #3E6697;
+  color: #3e6697;
   text-align: center;
 }
 </style>

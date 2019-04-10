@@ -47,12 +47,13 @@ export default {
           'zan': 0
         }
         localStorage.setItem('user', JSON.stringify(user))
+        this.$toast('注册成功')
         this.name = ''
         this.password = ''
         this.repeat = ''
         this.$router.push('/login')
       } else {
-        alert('两次输入不一致')
+        this.$toast('两次输入不一致')
       }
     }
   },

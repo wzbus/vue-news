@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="header">历史上的{{month}}.{{date}}</div>
+    <div class="header" @click="backTop">历史上的{{month}}.{{date}}</div>
     <div class="main" ref="wrapper">
       <div class="container">
         <div class="top-tip">
@@ -26,7 +26,6 @@
         </div>
       </div>
     </div>
-    <div class="toast" v-show="freshSucc">刷新成功</div>
   </div>
 </template>
 
@@ -69,6 +68,9 @@ export default {
           break
         }
       }
+    },
+    backTop () {
+      this.scroll.scrollTo(0, 0, 1000, 'easing')
     }
   },
   mounted () {
@@ -84,13 +86,14 @@ export default {
         threshold: 80
       },
       pullUpLoad: {
-        threshold: -50
+        threshold: -30
       }
     })
     this.scroll.on('pullingDown', () => {
       if (!this.freshSucc) {
         this.pulldownMsg = '刷新中'
         this.freshSucc = true
+        this.$toast('刷新成功')
         setTimeout(() => {
           this.pulldownMsg = '下拉刷新'
           this.freshSucc = false
@@ -106,6 +109,8 @@ export default {
         setTimeout(() => {
           this.freshSucc = false
         }, 1000)
+      } else if (this.noData) {
+        this.$toast('无更多数据')
       }
       this.scroll.finishPullUp()
     })
@@ -126,7 +131,7 @@ export default {
   width: 100%;
   line-height: 40px;
   color: #fff;
-  background-color: #D33D3E;
+  background-color: #d33d3e;
   font-size: 18px;
   text-align: center;
   z-index: 9;
@@ -150,7 +155,7 @@ export default {
   width: 85%;
   margin: 0 5% 0 10%;
   padding: 10px 0;
-  border-left: 5px solid #4BA5F1;
+  border-left: 5px solid #4ba5f1;
 }
 
 .news-li {
@@ -167,7 +172,7 @@ export default {
   padding: 10px 0;
   font-size: 18px;
   text-align: center;
-  color: #D33D3E;
+  color: #d33d3e;
   background-color: #fff;
 }
 
@@ -237,21 +242,5 @@ export default {
   text-align: center;
   color: #666;
   background: #eee;
-}
-
-.toast {
-  position: fixed;
-  top: 80%;
-  left: 50%;
-  width: 25%;
-  line-height: 35px;
-  margin-left: -12.5%;
-  border-radius: 5px;
-  font-size: 16px;
-  text-align: center;
-  color: #fff;
-  background-color: #000;
-  opacity: 0.6;
-  z-index: 9;
 }
 </style>
