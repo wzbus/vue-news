@@ -1,6 +1,6 @@
 <template>
-<div class="toast">
-  <span class="text" v-if="showWrap" :class="showContent?'fadeIn':'fadeOut'">{{text}}</span>
+<div class="toast" v-if="showWrap" :class="showContent?'fadeIn':'fadeOut'">
+  <span class="text">{{text}}</span>
 </div>
 </template>
 

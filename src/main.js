@@ -4,12 +4,14 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import toast from './components/toast/Toast.js'
+import dialog from './components/dialog/Dialog.js'
 import './assets/reset.css'
 import './assets/border.css'
 import './assets/iconfont.css'
 
 Vue.config.productionTip = false
 Vue.use(toast)
+Vue.use(dialog)
 axios.defaults.headers = {
   'Content-Type': 'application/x-www-form-urlencoded'
 }

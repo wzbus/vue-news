@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div class="header">
-      <div class="iconfont btn" @click="$router.back()">&#xe6e9;</div>
+      <div class="iconfont btn" @click="back">&#xe6e9;</div>
     </div>
     <div class="title-wrap">
       <span class="title">我的频道</span>
@@ -64,6 +64,19 @@ export default {
       if (this.edit && index > 1) {
         this.allList = this.allList.concat(this.myList[index])
         this.myList.splice(index, 1)
+      }
+    },
+    back () {
+      if (this.edit) {
+        this.$dialog({
+          content: '未保存更改，确认离开？'
+        }).then(() => {
+          this.$router.back()
+        }).catch(() => {
+          this.$dialog.showMask = false
+        })
+      } else {
+        this.$router.back()
       }
     }
   }

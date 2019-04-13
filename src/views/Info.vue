@@ -45,7 +45,6 @@
       </li>
     </ul>
     <button class="exit" @click="exit">注销账号</button>
-    <p class="tip">此举会清除保留在缓存中的账号信息，请慎重点击</p>
   </div>
 </template>
 
@@ -62,8 +61,14 @@ export default {
   },
   methods: {
     exit () {
-      localStorage.clear()
-      this.$router.back()
+      this.$dialog({
+        content: '此举会清除保存在缓存中的账号信息，不可恢复，是否继续？'
+      }).then(() => {
+        localStorage.clear()
+        this.$router.back()
+      }).catch(() => {
+        this.$dialog.showMask = false
+      })
     }
   }
 }
@@ -139,10 +144,5 @@ li {
   border-radius: 25px;
   border: none;
   outline: none;
-}
-.tip {
-  margin-top: 15px;
-  color: #3E6697;
-  text-align: center;
 }
 </style>
