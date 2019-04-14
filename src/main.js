@@ -12,6 +12,7 @@ import './assets/iconfont.css'
 Vue.config.productionTip = false
 Vue.use(toast)
 Vue.use(dialog)
+Vue.prototype.$axios = axios
 axios.defaults.headers = {
   'Content-Type': 'application/x-www-form-urlencoded'
 }

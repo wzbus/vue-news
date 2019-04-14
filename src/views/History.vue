@@ -31,7 +31,6 @@
 
 <script>
 import BScroll from 'better-scroll'
-import axios from 'axios'
 var page = 0
 var result = []
 var myDate = new Date()
@@ -50,7 +49,8 @@ export default {
   },
   methods: {
     getInfo () {
-      axios.get('/api/history.json').then((res) => {
+      this.$axios.get('/api?key=0b36831b3ef3b65eeeeeb342fcd4c190&v=1.0&month=' + this.month + '&day=' + this.date).then((res) => {
+      // axios.get('/API/history.json').then((res) => {
         res = res.data
         if (res.reason) {
           result = res.result

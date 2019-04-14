@@ -44,7 +44,10 @@ export default {
           'publish': 0,
           'follow': 0,
           'fans': 0,
-          'zan': 0
+          'zan': 0,
+          'sex': '男',
+          'birth': '',
+          'city': ''
         }
         localStorage.setItem('user', JSON.stringify(user))
         this.$toast('注册成功')

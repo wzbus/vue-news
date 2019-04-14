@@ -11,10 +11,18 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
+        target: 'http://api.juheapi.com/japi/toh',
+        changeOrigin: true,
+        ws: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      },
+      '/API': {
         target: 'http://localhost:8080',
         changeOrigin: true,
         pathRewrite: {
-          '^/api': '/mock'
+          '^/API': '/mock'
         }
       }
     }

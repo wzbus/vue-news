@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     getInfo () {
-      axios.get('/api/data.json').then((res) => {
+      axios.get('/API/data.json').then((res) => {
         res = res.data
         if (res.reason) {
           result = res.result.data
