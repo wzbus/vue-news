@@ -1,7 +1,12 @@
 <template>
   <div class="nav">
     <ul>
-      <li v-for="(item,index) in list" :key="index" :class="{'active': index === active}" @click="change(index)">{{item}}</li>
+      <li
+        v-for="(item,index) in list"
+        :key="index"
+        :class="{'active': item === active}"
+        @click="change(item)"
+      >{{item}}</li>
     </ul>
     <router-link :to="{name:'sort'}" tag="div" class="btn border-left">
       <i class="iconfont icon-icon_threeline_fill"></i>
@@ -14,13 +19,44 @@ export default {
   name: 'indexNav',
   data () {
     return {
-      list: ['关注', '推荐'],
-      active: 1
+      list: ['推荐', '国内'],
+      active: '推荐',
+      sort: 'top'
     }
   },
   methods: {
-    change (index) {
-      this.active = index
+    change (item) {
+      this.active = item
+      switch (this.active) {
+        case '推荐':
+          this.sort = 'top'
+          break;
+        case '国内':
+          this.sort = 'guonei'
+          break;
+        case '社会':
+          this.sort = 'shehui'
+          break;
+        case '娱乐':
+          this.sort = 'yule'
+          break;
+        case '体育':
+          this.sort = 'tiyu'
+          break;
+        case '军事':
+          this.sort = 'junshi'
+          break;
+        case '科技':
+          this.sort = 'keji'
+          break;
+        case '财经':
+          this.sort = 'caijing'
+          break;
+        case '时尚':
+          this.sort = 'shishang'
+          break;
+      }
+      this.$emit('change', this.sort)
     }
   },
   mounted () {

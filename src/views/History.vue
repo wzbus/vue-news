@@ -31,8 +31,6 @@
 
 <script>
 import BScroll from 'better-scroll'
-var page = 0
-var result = []
 var myDate = new Date()
 export default {
   name: 'index',
@@ -41,6 +39,8 @@ export default {
       month: myDate.getMonth() + 1,
       date: myDate.getDate(),
       list: [],
+      result: [],
+      page: 0,
       pulldownMsg: '下拉刷新',
       pullupMsg: '加载更多',
       freshSucc: false,
@@ -48,25 +48,73 @@ export default {
     }
   },
   methods: {
+    init () {
+      this.scroll = new BScroll(this.$refs.wrapper, {
+        probeType: 3,
+        mouseWheel: {
+          speed: 20,
+          invert: false,
+          easeTime: 300
+        },
+        pullDownRefresh: {
+          threshold: 80
+        }
+      })
+      this.scroll.on('scroll', () => {
+        if (this.scroll.y - this.scroll.maxScrollY < 50) {
+          this.pullUp()
+        }
+      })
+      this.scroll.on('touchEnd', () => {
+        if (this.scroll.y - this.scroll.maxScrollY < 50) {
+          this.pullUp()
+        }
+      })
+      this.scroll.on('pullingDown', () => {
+        if (!this.freshSucc) {
+          this.pulldownMsg = '刷新中'
+          this.freshSucc = true
+          this.$toast('刷新成功')
+          setTimeout(() => {
+            this.pulldownMsg = '下拉刷新'
+            this.freshSucc = false
+          }, 1000)
+        }
+        this.scroll.finishPullDown()
+      })
+    },
     getInfo () {
       this.$axios.get('/api?key=0b36831b3ef3b65eeeeeb342fcd4c190&v=1.0&month=' + this.month + '&day=' + this.date).then((res) => {
-      // axios.get('/API/history.json').then((res) => {
+        // axios.get('/API/history.json').then((res) => {
         res = res.data
         if (res.reason) {
-          result = res.result
+          this.result = res.result
           this.pushInfo()
+          this.$nextTick(() => {
+            this.init()
+          })
         }
       })
     },
     pushInfo () {
       for (let i = 0; i < 10; i++) {
-        if (result[10 * page + i]) {
-          this.list.push(result[10 * page + i])
+        if (this.result[10 * this.page + i]) {
+          this.list.push(this.result[10 * this.page + i])
         } else {
           this.pullupMsg = '无更多数据'
           this.noData = true
           break
         }
+      }
+    },
+    pullUp () {
+      if (!this.freshSucc && !this.noData) {
+        this.page++
+        this.pushInfo()
+        this.freshSucc = true
+        setTimeout(() => {
+          this.freshSucc = false
+        }, 1000)
       }
     },
     backTop () {
@@ -75,45 +123,6 @@ export default {
   },
   mounted () {
     this.getInfo()
-    this.scroll = new BScroll(this.$refs.wrapper, {
-      probeType: 3,
-      mouseWheel: {
-        speed: 20,
-        invert: false,
-        easeTime: 300
-      },
-      pullDownRefresh: {
-        threshold: 80
-      },
-      pullUpLoad: {
-        threshold: -30
-      }
-    })
-    this.scroll.on('pullingDown', () => {
-      if (!this.freshSucc) {
-        this.pulldownMsg = '刷新中'
-        this.freshSucc = true
-        this.$toast('刷新成功')
-        setTimeout(() => {
-          this.pulldownMsg = '下拉刷新'
-          this.freshSucc = false
-        }, 1000)
-      }
-      this.scroll.finishPullDown()
-    })
-    this.scroll.on('pullingUp', () => {
-      if (!this.freshSucc && !this.noData) {
-        page++
-        this.pushInfo()
-        this.freshSucc = true
-        setTimeout(() => {
-          this.freshSucc = false
-        }, 1000)
-      } else if (this.noData) {
-        this.$toast('无更多数据')
-      }
-      this.scroll.finishPullUp()
-    })
   }
 }
 </script>
@@ -123,7 +132,6 @@ export default {
   width: 100%;
   height: 100%;
 }
-
 .header {
   position: fixed;
   top: 0;
@@ -136,7 +144,6 @@ export default {
   text-align: center;
   z-index: 9;
 }
-
 .main {
   position: fixed;
   top: 40px;
@@ -145,19 +152,16 @@ export default {
   height: calc(100% - 90px);
   overflow: hidden;
 }
-
 .container {
   width: 100%;
   min-height: 100%;
 }
-
 .news-ul {
   width: 85%;
   margin: 0 5% 0 10%;
   padding: 10px 0;
   border-left: 5px solid #4ba5f1;
 }
-
 .news-li {
   position: relative;
   margin: 20px 20px 20px 30px;
@@ -175,7 +179,6 @@ export default {
   color: #d33d3e;
   background-color: #fff;
 }
-
 .dot {
   position: absolute;
   top: 50%;
@@ -186,13 +189,11 @@ export default {
   border-radius: 50%;
   background-color: #09c;
 }
-
 .content {
   padding: 10px;
   background-color: #ffc;
   border-radius: 10px;
 }
-
 .triangle {
   position: absolute;
   top: 50%;
@@ -203,26 +204,22 @@ export default {
   border: 10px solid;
   border-color: transparent #ffc transparent transparent;
 }
-
 .title {
   line-height: 24px;
   font-size: 16px;
   font-weight: 700;
 }
-
 .des {
   line-height: 20px;
   margin-top: 10px;
   font-size: 14px;
   text-indent: 2em;
 }
-
 .pic {
   max-width: calc(100% - 4em);
   max-height: 100px;
   margin: 10px 2em 0;
 }
-
 .top-tip {
   position: absolute;
   top: -50px;
@@ -232,7 +229,6 @@ export default {
   text-align: center;
   color: #666;
 }
-
 .bottom-tip {
   position: absolute;
   bottom: -50px;

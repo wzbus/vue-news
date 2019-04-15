@@ -10,6 +10,14 @@ module.exports = {
   },
   devServer: {
     proxy: {
+      '/index': {
+        target: 'http://v.juhe.cn/toutiao/index',
+        changeOrigin: true,
+        ws: true,
+        pathRewrite: {
+          '^/index': ''
+        }
+      },
       '/api': {
         target: 'http://api.juheapi.com/japi/toh',
         changeOrigin: true,

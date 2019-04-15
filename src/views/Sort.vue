@@ -34,8 +34,8 @@ export default {
     return {
       user: null,
       edit: false,
-      myList: ['关注', '推荐'],
-      allList: ['社会', '国内', '娱乐', '体育', '军事', '科技', '财经', '时尚']
+      myList: ['推荐', '国内'],
+      allList: ['社会', '娱乐', '体育', '军事', '科技', '财经', '时尚']
     }
   },
   mounted () {

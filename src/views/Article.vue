@@ -64,7 +64,7 @@ export default {
     axios.get(this.data.url).then((res) => {
       this.content = res.data
     })
-    axios.get('/api/comment.json').then((res) => {
+    axios.get('/API/comment.json').then((res) => {
       res = res.data
       if (res.reason) {
         this.list = res.data
