@@ -31,7 +31,7 @@
       </li>
       <li class="list-li">
         <span class="item">生日</span>
-        <div class="info">
+        <div class="info" @click="editBirth">
           <span class="info" v-if="user.birth">{{user.birth}}</span>
           <span class="info blue" v-if="!user.birth">待完善</span>
           <span class="iconfont">&#xe60f;</span>
@@ -39,14 +39,14 @@
       </li>
       <li class="list-li">
         <span class="item">地区</span>
-        <div class="info">
+        <div class="info" @click="editCity">
           <span class="info" v-if="user.city">{{user.city}}</span>
           <span class="info blue" v-if="!user.city">待完善</span>
           <span class="iconfont">&#xe60f;</span>
         </div>
       </li>
     </ul>
-    <button class="exit" @click="exit">注销账号</button>
+    <btn class="exit" @click="exit">注销账号</btn>
     <div class="mask" v-show="showMask" @click="hide"></div>
     <div class="nameWrap" v-show="showName">
       <p class="nameTitle">请输入用户名</p>
@@ -54,8 +54,8 @@
       <span class="nameLen">{{nameLen}}</span>
       <div class="btnWrap">
         <span class="nameTip">支持中英文、数字</span>
-        <button class="confirm-btn" @click="confirm">确认</button>
-        <button class="cancel-btn" @click="cancel">取消</button>
+        <btn class="confirm-btn" @click="confirm">确认</btn>
+        <btn class="cancel-btn" @click="cancel">取消</btn>
       </div>
     </div>
     <div class="sexWrap" v-show="showSex">
@@ -69,7 +69,7 @@
           <label for="woman" @click="confirmSex">女</label>
         </li>
       </ul>
-      <button class="sex-btn" @click="hide">取消</button>
+      <btn class="sex-btn" @click="hide">取消</btn>
     </div>
   </div>
 </template>
@@ -114,6 +114,12 @@ export default {
     editSex () {
       this.showMask = true
       this.showSex = true
+    },
+    editBirth () {
+      this.$toast('暂不支持')
+    },
+    editCity () {
+      this.$toast('暂不支持')
     },
     confirmSex () {
       for (let i = 0; i < document.getElementsByName('sex').length; i++) {

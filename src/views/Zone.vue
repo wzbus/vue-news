@@ -13,44 +13,44 @@
         <i class="iconfont icon-right top-icon"></i>
       </router-link>
       <div class="bottom">
-        <div class="info">
+        <div class="info" @click="toast">
           <p class="num">{{user.publish}}</p>
           <p class="user-desc">头条</p>
         </div>
-        <div class="info">
+        <div class="info" @click="toast">
           <p class="num">{{user.follow}}</p>
           <p class="user-desc">关注</p>
         </div>
-        <div class="info">
+        <div class="info" @click="toast">
           <p class="num">{{user.fans}}</p>
           <p class="user-desc">粉丝</p>
         </div>
-        <div class="info">
+        <div class="info" @click="toast">
           <p class="num">{{user.zan}}</p>
           <p class="user-desc">获赞</p>
         </div>
       </div>
     </div>
     <div class="middle">
-      <div class="option">
+      <div class="option" @click="toast">
         <div class="option-wrap">
           <i class="iconfont icon-star"></i>
           <p class="option-desc">我的收藏</p>
         </div>
       </div>
-      <div class="option">
+      <div class="option" @click="toast">
         <div class="option-wrap">
           <i class="iconfont icon-comment"></i>
           <p class="option-desc">我的评论</p>
         </div>
       </div>
-      <div class="option">
+      <div class="option" @click="toast">
         <div class="option-wrap">
           <i class="iconfont icon-zan"></i>
           <p class="option-desc">我的点赞</p>
         </div>
       </div>
-      <div class="option">
+      <div class="option" @click="toast">
         <div class="option-wrap">
           <i class="iconfont icon-history"></i>
           <p class="option-desc">浏览历史</p>
@@ -58,21 +58,21 @@
       </div>
     </div>
     <ul>
-      <li class="border-bottom">
+      <li class="border-bottom" @click="toast">
         <span>消息通知</span>
         <i class="iconfont icon-right"></i>
       </li>
-      <li class="border-bottom">
+      <li class="border-bottom" @click="toast">
         <span>私信</span>
         <i class="iconfont icon-right"></i>
       </li>
     </ul>
     <ul>
-      <li class="border-bottom">
+      <li class="border-bottom" @click="toast">
         <span>用户反馈</span>
         <i class="iconfont icon-right"></i>
       </li>
-      <li class="border-bottom">
+      <li class="border-bottom" @click="toast">
         <span>系统设置</span>
         <i class="iconfont icon-right"></i>
       </li>
@@ -91,6 +91,11 @@ export default {
   mounted () {
     if (JSON.parse(localStorage.getItem('user'))) {
       this.user = JSON.parse(localStorage.getItem('user'))
+    }
+  },
+  methods: {
+    toast () {
+      this.$toast('暂不支持')
     }
   }
 }

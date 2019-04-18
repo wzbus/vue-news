@@ -1,6 +1,11 @@
 <template>
   <div class="page">
-    <div class="header" @click="backTop">历史上的{{month}}.{{date}}</div>
+    <div class="header">
+      <span class="iconfont btn"></span>
+      <span class="header-title" @click="backTop">历史上的{{month}}.{{date}}</span>
+      <span class="iconfont btn" @click="openCalendar">&#xeb9f;</span>
+    </div>
+    <calendar class="calendar" v-show="showCalendar" @choseDay="choseDay"></calendar>
     <div class="main" ref="wrapper">
       <div class="container">
         <div class="top-tip">
@@ -31,9 +36,13 @@
 
 <script>
 import BScroll from 'better-scroll'
+import Calendar from 'vue-calendar-component'
 var myDate = new Date()
 export default {
   name: 'index',
+  components: {
+    Calendar
+  },
   data () {
     return {
       month: myDate.getMonth() + 1,
@@ -44,7 +53,8 @@ export default {
       pulldownMsg: '下拉刷新',
       pullupMsg: '加载更多',
       freshSucc: false,
-      noData: false
+      noData: false,
+      showCalendar: false
     }
   },
   methods: {
@@ -119,6 +129,16 @@ export default {
     },
     backTop () {
       this.scroll.scrollTo(0, 0, 1000, 'easing')
+    },
+    openCalendar () {
+      this.showCalendar = !this.showCalendar
+    },
+    choseDay (date) {
+      this.mouth = date.split('/')[1]
+      this.date = date.split('/')[2]
+      this.list = []
+      this.getInfo()
+      this.showCalendar = false
     }
   },
   mounted () {
@@ -141,7 +161,23 @@ export default {
   color: #fff;
   background-color: #d33d3e;
   font-size: 18px;
+  display: flex;
+  align-items: center;
   text-align: center;
+  justify-content: space-between;
+  z-index: 9;
+}
+.header-title {
+  flex: 1;
+}
+.btn {
+  width: 10%;
+  font-size: 20px;
+  font-weight: 500;
+}
+.calendar {
+  position: relative;
+  top: 39px;
   z-index: 9;
 }
 .main {

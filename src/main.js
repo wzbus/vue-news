@@ -3,6 +3,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import axios from 'axios'
+import btn from './components/btn/Btn.js'
 import toast from './components/toast/Toast.js'
 import dialog from './components/dialog/Dialog.js'
 import './assets/reset.css'
@@ -10,6 +11,7 @@ import './assets/border.css'
 import './assets/iconfont.css'
 
 Vue.config.productionTip = false
+Vue.use(btn)
 Vue.use(toast)
 Vue.use(dialog)
 Vue.prototype.$axios = axios

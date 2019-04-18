@@ -11,6 +11,7 @@
     "axios": "^0.18.0",
     "better-scroll": "^1.15.1",
     "vue": "^2.6.6",
+    "vue-calendar-component": "^2.8.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },
