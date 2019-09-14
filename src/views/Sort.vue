@@ -22,7 +22,12 @@
       <span class="tip">点击添加频道</span>
     </div>
     <ul class="sort-wrap">
-      <li class="iconfont sort all" v-for="(item,index) in allList" :key="index" @click="add(index)">&#xe6df;{{item}}</li>
+      <li
+        class="iconfont sort all"
+        v-for="(item,index) in allList"
+        :key="index"
+        @click="add(index)"
+      >&#xe6df;{{item}}</li>
     </ul>
   </div>
 </template>
@@ -32,7 +37,7 @@ export default {
   name: 'sort',
   data () {
     return {
-      user: null,
+      user: {},
       edit: false,
       myList: ['推荐', '国内'],
       allList: ['社会', '娱乐', '体育', '军事', '科技', '财经', '时尚']
@@ -73,7 +78,6 @@ export default {
         }).then(() => {
           this.$router.back()
         }).catch(() => {
-          this.$dialog.showMask = false
         })
       } else {
         this.$router.back()
@@ -140,7 +144,7 @@ export default {
   text-align: center;
 }
 .my {
-  background-color: #F4F5F7;
+  background-color: #f4f5f7;
 }
 .all {
   font-weight: 500;

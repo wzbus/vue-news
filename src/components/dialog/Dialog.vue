@@ -8,7 +8,7 @@
       </div>
       <div class="content">{{text.content}}</div>
       <div class="btn_wrap">
-        <div class="btn cancel_btn" v-if="text.type === 'confirm'" @click="cancel">{{text.cancelText}}</div>
+        <div class="btn cancel_btn" v-if="text.type==='confirm'" @click="cancel">{{text.cancelText}}</div>
         <div class="btn" @click="confirm">{{text.confirmText}}</div>
       </div>
       </div>
@@ -28,13 +28,14 @@
 }
 .dialog {
   position: fixed;
-  top: 40%;
+  top: 50%;
   left: 8%;
   width: 84%;
   max-height: 80%;
   overflow-y: scroll;
   color: #333;
   background-color: #fff;
+  transform: translateY(-50%);
   z-index: 9999;
 }
 .dialog::-webkit-scrollbar {
@@ -78,8 +79,7 @@
   animation: animateIn 0.5s;
 }
 .fadeOut {
-  animation: animateOut 0.5s;
-  opacity: 0;
+  animation: animateOut 0.5s forwards;
 }
 @keyframes animateIn {
   0% {
@@ -88,7 +88,7 @@
   }
   100% {
     opacity: 1;
-    transform: translateY(0)
+    transform: translateY(0);
   }
 }
 @keyframes animateOut {

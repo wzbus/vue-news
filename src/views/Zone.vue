@@ -7,26 +7,26 @@
       <router-link :to="{name:'info'}" tag="div" class="top">
         <div class="header"></div>
         <div class="right">
-          <p class="name">{{user.name}}</p>
+          <p class="name">{{user.name || '未登录'}}</p>
           <div class="apply">申请认知</div>
         </div>
         <i class="iconfont icon-right top-icon"></i>
       </router-link>
       <div class="bottom">
         <div class="info" @click="toast">
-          <p class="num">{{user.publish}}</p>
+          <p class="num">{{user.publish || '0'}}</p>
           <p class="user-desc">头条</p>
         </div>
         <div class="info" @click="toast">
-          <p class="num">{{user.follow}}</p>
+          <p class="num">{{user.follow || '0'}}</p>
           <p class="user-desc">关注</p>
         </div>
         <div class="info" @click="toast">
-          <p class="num">{{user.fans}}</p>
+          <p class="num">{{user.fans || '0'}}</p>
           <p class="user-desc">粉丝</p>
         </div>
         <div class="info" @click="toast">
-          <p class="num">{{user.zan}}</p>
+          <p class="num">{{user.zan || '0'}}</p>
           <p class="user-desc">获赞</p>
         </div>
       </div>
@@ -85,7 +85,7 @@ export default {
   name: 'zone',
   data () {
     return {
-      user: null
+      user: {}
     }
   },
   mounted () {

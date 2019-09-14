@@ -1,7 +1,7 @@
 <template>
-<div class="toast" v-if="showWrap" :class="showContent?'fadeIn':'fadeOut'">
-  <span class="text">{{text}}</span>
-</div>
+  <div class="toast" v-if="showWrap" :class="showContent?'fadeIn':'fadeOut'">
+    <span class="text">{{text}}</span>
+  </div>
 </template>
 
 <style scoped>
@@ -18,15 +18,14 @@
   font-size: 16px;
   text-align: center;
   color: #fff;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 99;
 }
 .fadeIn {
   animation: animateIn 0.5s;
 }
 .fadeOut {
-  animation: animateOut 0.5s;
-  opacity: 0;
+  animation: animateOut 0.5s forwards;
 }
 @keyframes animateIn {
   0% {
@@ -35,7 +34,7 @@
   }
   100% {
     opacity: 1;
-    transform: translateY(0)
+    transform: translateY(0);
   }
 }
 @keyframes animateOut {
